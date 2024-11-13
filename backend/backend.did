@@ -1,3 +1,26 @@
+type Point = 
+ record {
+   x: nat;
+   y: nat;
+ };
+type MapSettings = 
+ record {
+   continentDensity: nat;
+   landmarkDensity: nat;
+   oceanLevel: nat;
+ };
+type MapData = 
+ record {
+   continents: vec Continent;
+   landmarks: vec Landmark;
+ };
+type Landmark = 
+ record {
+   name: text;
+   x: nat;
+   y: nat;
+ };
+type Continent = record {points: vec Point;};
 type CharacterResponse = record {backstory: text;};
 type Character = 
  record {
@@ -19,5 +42,6 @@ type Abilities =
  };
 service : {
   generateCharacter: (Character) -> (CharacterResponse);
+  generateMapData: (MapSettings) -> (MapData);
   generateRandomName: () -> (text);
 }

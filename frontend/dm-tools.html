@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DM Tools - Map Generator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">D&D Tools</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Character Creator</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="dm-tools.html">DM Tools</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="map-generator-container">
+            <h1 class="text-center mb-4">World Map Generator</h1>
+            
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Map Settings</h5>
+                            <div class="mb-3">
+                                <label class="form-label">Continent Density</label>
+                                <input type="range" class="form-range" id="continentDensity" min="1" max="5" value="3">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Ocean Level</label>
+                                <input type="range" class="form-range" id="oceanLevel" min="1" max="5" value="3">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Landmark Density</label>
+                                <input type="range" class="form-range" id="landmarkDensity" min="1" max="5" value="3">
+                            </div>
+                            <button class="btn btn-primary w-100 mb-2" id="generateMap">Generate New Map</button>
+                            <button class="btn btn-secondary w-100" id="exportMap">Export Map</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="map-container">
+                        <canvas id="mapCanvas" width="800" height="600"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="dm-tools.js"></script>
+</body>
+</html>

@@ -19,8 +19,21 @@ export interface Character {
   'className' : string,
 }
 export interface CharacterResponse { 'backstory' : string }
+export interface Continent { 'points' : Array<Point> }
+export interface Landmark { 'x' : bigint, 'y' : bigint, 'name' : string }
+export interface MapData {
+  'landmarks' : Array<Landmark>,
+  'continents' : Array<Continent>,
+}
+export interface MapSettings {
+  'oceanLevel' : bigint,
+  'continentDensity' : bigint,
+  'landmarkDensity' : bigint,
+}
+export interface Point { 'x' : bigint, 'y' : bigint }
 export interface _SERVICE {
   'generateCharacter' : ActorMethod<[Character], CharacterResponse>,
+  'generateMapData' : ActorMethod<[MapSettings], MapData>,
   'generateRandomName' : ActorMethod<[], string>,
 }
 export declare const idlFactory: IDL.InterfaceFactory;
