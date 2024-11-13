@@ -19,4 +19,5 @@ type Abilities =
  };
 service : {
   generateCharacter: (Character) -> (CharacterResponse);
+  generateRandomName: () -> (text);
 }

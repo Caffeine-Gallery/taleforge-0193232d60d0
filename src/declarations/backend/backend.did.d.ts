@@ -21,6 +21,7 @@ export interface Character {
 export interface CharacterResponse { 'backstory' : string }
 export interface _SERVICE {
   'generateCharacter' : ActorMethod<[Character], CharacterResponse>,
+  'generateRandomName' : ActorMethod<[], string>,
 }
 export declare const idlFactory: IDL.InterfaceFactory;
 export declare const init: (args: { IDL: typeof IDL }) => IDL.Type[];

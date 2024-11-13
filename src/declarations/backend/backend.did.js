@@ -18,6 +18,7 @@ export const idlFactory = ({ IDL }) => {
   const CharacterResponse = IDL.Record({ 'backstory' : IDL.Text });
   return IDL.Service({
     'generateCharacter' : IDL.Func([Character], [CharacterResponse], []),
+    'generateRandomName' : IDL.Func([], [IDL.Text], []),
   });
 };
 export const init = ({ IDL }) => { return []; };

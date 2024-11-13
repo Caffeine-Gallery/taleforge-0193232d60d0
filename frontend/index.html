@@ -5,120 +5,126 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>D&D Character Creator</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
     <div class="container mt-4">
-        <h1 class="text-center mb-4">D&D Character Creator</h1>
-        
-        <div class="progress mb-4">
-            <div class="progress-bar" role="progressbar" style="width: 0%"></div>
-        </div>
-
-        <div id="characterForm">
-            <!-- Step 1: Race -->
-            <div class="step" data-step="1">
-                <h3>Choose Your Race</h3>
-                <select class="form-select mb-3" id="race">
-                    <option value="">Select a race...</option>
-                    <option value="human">Human</option>
-                    <option value="elf">Elf</option>
-                    <option value="dwarf">Dwarf</option>
-                    <option value="halfling">Halfling</option>
-                    <option value="dragonborn">Dragonborn</option>
-                </select>
+        <div class="character-creator-container">
+            <h1 class="text-center mb-4">D&D Character Creator</h1>
+            
+            <div class="progress mb-4">
+                <div class="progress-bar" role="progressbar" style="width: 0%"></div>
             </div>
 
-            <!-- Step 2: Class -->
-            <div class="step" data-step="2" style="display: none;">
-                <h3>Choose Your Class</h3>
-                <select class="form-select mb-3" id="class">
-                    <option value="">Select a class...</option>
-                    <option value="fighter">Fighter</option>
-                    <option value="wizard">Wizard</option>
-                    <option value="rogue">Rogue</option>
-                    <option value="cleric">Cleric</option>
-                    <option value="ranger">Ranger</option>
-                </select>
-            </div>
-
-            <!-- Step 3: Ability Scores -->
-            <div class="step" data-step="3" style="display: none;">
-                <h3>Roll Ability Scores</h3>
-                <div class="ability-scores">
-                    <div class="mb-3">
-                        <label>Strength</label>
-                        <input type="number" class="form-control" id="strength" min="3" max="18">
-                    </div>
-                    <div class="mb-3">
-                        <label>Dexterity</label>
-                        <input type="number" class="form-control" id="dexterity" min="3" max="18">
-                    </div>
-                    <div class="mb-3">
-                        <label>Constitution</label>
-                        <input type="number" class="form-control" id="constitution" min="3" max="18">
-                    </div>
-                    <div class="mb-3">
-                        <label>Intelligence</label>
-                        <input type="number" class="form-control" id="intelligence" min="3" max="18">
-                    </div>
-                    <div class="mb-3">
-                        <label>Wisdom</label>
-                        <input type="number" class="form-control" id="wisdom" min="3" max="18">
-                    </div>
-                    <div class="mb-3">
-                        <label>Charisma</label>
-                        <input type="number" class="form-control" id="charisma" min="3" max="18">
-                    </div>
-                    <button class="btn btn-secondary" id="rollDice">Roll Dice</button>
+            <div id="characterForm" class="form-container">
+                <!-- Step 1: Race -->
+                <div class="step" data-step="1">
+                    <h3>Choose Your Race</h3>
+                    <select class="form-select mb-3" id="race">
+                        <option value="">Select a race...</option>
+                        <option value="human">Human</option>
+                        <option value="elf">Elf</option>
+                        <option value="dwarf">Dwarf</option>
+                        <option value="halfling">Halfling</option>
+                        <option value="dragonborn">Dragonborn</option>
+                    </select>
                 </div>
-            </div>
 
-            <!-- Step 4: Background -->
-            <div class="step" data-step="4" style="display: none;">
-                <h3>Choose Your Background</h3>
-                <select class="form-select mb-3" id="background">
-                    <option value="">Select a background...</option>
-                    <option value="acolyte">Acolyte</option>
-                    <option value="criminal">Criminal</option>
-                    <option value="noble">Noble</option>
-                    <option value="soldier">Soldier</option>
-                    <option value="sage">Sage</option>
-                </select>
-            </div>
-
-            <!-- Step 5: Character Details -->
-            <div class="step" data-step="5" style="display: none;">
-                <h3>Character Details</h3>
-                <div class="mb-3">
-                    <label>Character Name</label>
-                    <input type="text" class="form-control" id="characterName">
+                <!-- Step 2: Class -->
+                <div class="step" data-step="2" style="display: none;">
+                    <h3>Choose Your Class</h3>
+                    <select class="form-select mb-3" id="class">
+                        <option value="">Select a class...</option>
+                        <option value="fighter">Fighter</option>
+                        <option value="wizard">Wizard</option>
+                        <option value="rogue">Rogue</option>
+                        <option value="cleric">Cleric</option>
+                        <option value="ranger">Ranger</option>
+                    </select>
                 </div>
-                <div class="mb-3">
-                    <label>Age</label>
-                    <input type="number" class="form-control" id="age" min="1">
-                </div>
-            </div>
 
-            <!-- Final Step: Result -->
-            <div class="step" data-step="6" style="display: none;">
-                <h3>Your Character</h3>
-                <div id="characterSheet" class="card p-4">
-                    <div id="loadingBackstory" class="text-center" style="display: none;">
-                        <div class="spinner-border" role="status">
-                            <span class="visually-hidden">Loading...</span>
+                <!-- Step 3: Ability Scores -->
+                <div class="step" data-step="3" style="display: none;">
+                    <h3>Roll Ability Scores</h3>
+                    <div class="ability-scores">
+                        <div class="mb-3">
+                            <label>Strength</label>
+                            <input type="number" class="form-control" id="strength" min="3" max="18">
                         </div>
-                        <p>Generating character backstory...</p>
+                        <div class="mb-3">
+                            <label>Dexterity</label>
+                            <input type="number" class="form-control" id="dexterity" min="3" max="18">
+                        </div>
+                        <div class="mb-3">
+                            <label>Constitution</label>
+                            <input type="number" class="form-control" id="constitution" min="3" max="18">
+                        </div>
+                        <div class="mb-3">
+                            <label>Intelligence</label>
+                            <input type="number" class="form-control" id="intelligence" min="3" max="18">
+                        </div>
+                        <div class="mb-3">
+                            <label>Wisdom</label>
+                            <input type="number" class="form-control" id="wisdom" min="3" max="18">
+                        </div>
+                        <div class="mb-3">
+                            <label>Charisma</label>
+                            <input type="number" class="form-control" id="charisma" min="3" max="18">
+                        </div>
+                        <button class="btn btn-primary" id="rollDice">Roll Dice</button>
                     </div>
-                    <div id="characterSummary"></div>
-                    <div id="backstory" class="mt-4"></div>
                 </div>
-            </div>
 
-            <div class="navigation-buttons mt-4">
-                <button class="btn btn-secondary" id="prevBtn" style="display: none;">Previous</button>
-                <button class="btn btn-primary" id="nextBtn">Next</button>
-                <button class="btn btn-success" id="finishBtn" style="display: none;">Generate Character</button>
+                <!-- Step 4: Background -->
+                <div class="step" data-step="4" style="display: none;">
+                    <h3>Choose Your Background</h3>
+                    <select class="form-select mb-3" id="background">
+                        <option value="">Select a background...</option>
+                        <option value="acolyte">Acolyte</option>
+                        <option value="criminal">Criminal</option>
+                        <option value="noble">Noble</option>
+                        <option value="soldier">Soldier</option>
+                        <option value="sage">Sage</option>
+                    </select>
+                </div>
+
+                <!-- Step 5: Character Details -->
+                <div class="step" data-step="5" style="display: none;">
+                    <h3>Character Details</h3>
+                    <div class="mb-3">
+                        <label>Character Name</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="characterName">
+                            <button class="btn btn-secondary" id="generateName">Generate Name</button>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label>Age</label>
+                        <input type="number" class="form-control" id="age" min="1">
+                    </div>
+                </div>
+
+                <!-- Final Step: Result -->
+                <div class="step" data-step="6" style="display: none;">
+                    <h3>Your Character</h3>
+                    <div id="characterSheet" class="card p-4">
+                        <div id="loadingBackstory" class="text-center" style="display: none;">
+                            <div class="spinner-border" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <p>Generating character backstory...</p>
+                        </div>
+                        <div id="characterSummary"></div>
+                        <div id="backstory" class="mt-4"></div>
+                    </div>
+                </div>
+
+                <div class="navigation-buttons mt-4">
+                    <button class="btn btn-secondary" id="prevBtn" style="display: none;">Previous</button>
+                    <button class="btn btn-primary" id="nextBtn">Next</button>
+                    <button class="btn btn-success" id="finishBtn" style="display: none;">Generate Character</button>
+                </div>
             </div>
         </div>
     </div>

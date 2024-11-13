@@ -4,6 +4,8 @@ import Text "mo:base/Text";
 import Array "mo:base/Array";
 import Int "mo:base/Int";
 import Nat "mo:base/Nat";
+import Random "mo:base/Random";
+import Time "mo:base/Time";
 
 actor {
     public type Abilities = {
@@ -28,7 +30,25 @@ actor {
         backstory: Text;
     };
 
-    // Helper function to generate background story based on character traits
+    private let firstNames = [
+        "Thorin", "Eldara", "Garrick", "Luna", "Magnus", "Sylva",
+        "Thane", "Aria", "Drake", "Lyra", "Finn", "Nova",
+        "Raven", "Storm", "Wolf", "Ember", "Ash", "Dawn"
+    ];
+
+    private let lastNames = [
+        "Ironheart", "Shadowweaver", "Stormwind", "Lightbringer", "Frostborn",
+        "Blackthorn", "Swiftsword", "Moonshadow", "Flamekeep", "Starweaver"
+    ];
+
+    public func generateRandomName() : async Text {
+        let now = Int.abs(Time.now());
+        let firstNameIndex = now % firstNames.size();
+        let lastNameIndex = (now / 1_000_000) % lastNames.size();
+        
+        firstNames[firstNameIndex] # " " # lastNames[lastNameIndex]
+    };
+
     private func generateBackstoryText(char: Character) : Text {
         let introText = "In the realm of fantasy, ";
         
