@@ -1,0 +1,35 @@
+.step {
+    min-height: 300px;
+}
+
+.ability-scores {
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.navigation-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.progress {
+    height: 10px;
+}
+
+.card {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+}
+
+#characterSheet {
+    min-height: 400px;
+}
+
+.spinner-border {
+    width: 3rem;
+    height: 3rem;
+}
+
+#loadingBackstory {
+    margin: 2rem 0;
+}

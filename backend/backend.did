@@ -1,0 +1,22 @@
+type CharacterResponse = record {backstory: text;};
+type Character = 
+ record {
+   abilities: Abilities;
+   age: nat;
+   background: text;
+   className: text;
+   name: text;
+   race: text;
+ };
+type Abilities = 
+ record {
+   charisma: nat;
+   constitution: nat;
+   dexterity: nat;
+   intelligence: nat;
+   strength: nat;
+   wisdom: nat;
+ };
+service : {
+  generateCharacter: (Character) -> (CharacterResponse);
+}
