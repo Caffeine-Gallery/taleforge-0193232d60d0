@@ -6,7 +6,6 @@ import Int "mo:base/Int";
 import Nat "mo:base/Nat";
 import Random "mo:base/Random";
 import Time "mo:base/Time";
-import Iter "mo:base/Iter";
 
 actor {
     public type Abilities = {
@@ -31,32 +30,6 @@ actor {
         backstory: Text;
     };
 
-    public type Point = {
-        x: Nat;
-        y: Nat;
-    };
-
-    public type Continent = {
-        points: [Point];
-    };
-
-    public type Landmark = {
-        x: Nat;
-        y: Nat;
-        name: Text;
-    };
-
-    public type MapData = {
-        continents: [Continent];
-        landmarks: [Landmark];
-    };
-
-    public type MapSettings = {
-        continentDensity: Nat;
-        oceanLevel: Nat;
-        landmarkDensity: Nat;
-    };
-
     private let firstNames = [
         "Thorin", "Eldara", "Garrick", "Luna", "Magnus", "Sylva",
         "Thane", "Aria", "Drake", "Lyra", "Finn", "Nova",
@@ -68,60 +41,12 @@ actor {
         "Blackthorn", "Swiftsword", "Moonshadow", "Flamekeep", "Starweaver"
     ];
 
-    private let landmarkNames = [
-        "Dragon's Peak", "Mystic Grove", "Ancient Ruins",
-        "Crystal Cave", "Shadow Valley", "Golden Temple",
-        "Storm's End", "Wizard's Tower", "Lost City",
-        "Sacred Spring", "Dark Forest", "Eternal Flame"
-    ];
-
     public func generateRandomName() : async Text {
         let now = Int.abs(Time.now());
         let firstNameIndex = now % firstNames.size();
         let lastNameIndex = (now / 1_000_000) % lastNames.size();
         
         firstNames[firstNameIndex] # " " # lastNames[lastNameIndex]
-    };
-
-    private func generateRandomPoints(count: Nat, maxX: Nat, maxY: Nat) : [Point] {
-        let now = Int.abs(Time.now());
-        var points : [Point] = [];
-        
-        for (i in Iter.range(0, count - 1)) {
-            let x = (now + i * 12345) % maxX;
-            let y = (now + i * 67890) % maxY;
-            points := Array.append(points, [{ x = x; y = y }]);
-        };
-        
-        points
-    };
-
-    public shared func generateMapData(settings: MapSettings) : async MapData {
-        let continentCount = settings.continentDensity * 2;
-        let landmarkCount = settings.landmarkDensity * 3;
-        
-        // Generate continents
-        var continents : [Continent] = [];
-        for (i in Iter.range(0, continentCount - 1)) {
-            let pointCount = 5 + (i % 3);
-            let points = generateRandomPoints(pointCount, 800, 600);
-            continents := Array.append(continents, [{ points = points }]);
-        };
-        
-        // Generate landmarks
-        let landmarks = Array.tabulate<Landmark>(landmarkCount, func(i) {
-            let points = generateRandomPoints(1, 800, 600);
-            {
-                x = points[0].x;
-                y = points[0].y;
-                name = landmarkNames[i % landmarkNames.size()];
-            }
-        });
-        
-        {
-            continents = continents;
-            landmarks = landmarks;
-        }
     };
 
     private func generateBackstoryText(char: Character) : Text {
